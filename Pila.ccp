@@ -7,14 +7,21 @@ void ingresarDatos(){
   for(int i=0;i<lim;i++){
     if(pila[i]=='\0'){
       std::cout << "Escribe un valor\n";
-      std::cin >> pila[i];
-      std::cout <<"Escribir otro valor?\nS o N:\n";
+      std::cin >> pila[i];tope=i;
+      std::cout <<"Escribir otro valor?\n1:Si\n2:N0\n";
       char val; std::cin >>val;
-      if(val=='n'){
-       tope=i; break;
+      if(val=='1'){
+        if(tope==lim-1){
+          std::cout << "Desbordamiento de pila\n";
+          break;
         }else{
-        continue;
+          continue;
         }
+      }else{
+         break;
+        }
+      }else{
+        std::cout << "Desbordamiento de pila\n";
       }
     
     }
@@ -43,15 +50,17 @@ void SacarDatos(){
     }
     otro[i]='\0';
   }
-  if(pila[0]==letra){
+  
+  if(esta==false){
+    std::cout << "No se encuentra tu Caracter en la pila\n";
+  }else{
+    if(pila[0]==letra){
     vaciarpila();
     esta=true;
-  }
-  if(esta==false){
-    std::cout << "No se encuentra tu Caracter en la pila";
-  }else{
-    for(int j=0;j<lim;j++){
+    }else{
+      for(int j=0;j<lim;j++){
       pila[j]=otro[j];
+      }
     }
   }
   
@@ -84,7 +93,7 @@ int main() {
       break;
     case 2: std::cout << "**********Sacar***********\n";
       if(pila[0]=='\0'){
-        std::cout << "No hay nada en la pila, ingrese datos\n";
+        std::cout << "Subdesbordamiento de pila\nNo hay nada en la pila, ingrese datos\n";
         }else{
           std::cout << "Desea\n1:Sacar un valor de la pila\n2:Vaciar toda la pila\n";
           int hacer;
